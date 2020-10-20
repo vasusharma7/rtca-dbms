@@ -1,0 +1,7 @@
+{
+  "jwtSecret": "TRUMP_IS_FOOLISH",
+  "host": "localhost",
+  "username": "root",
+  "password": "toor",
+  "database": "rtca"
+}
