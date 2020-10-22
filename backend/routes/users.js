@@ -54,6 +54,7 @@ router.get("/getData/:id", (req, res) => {
     }
   });
 });
+
 // @route GET /api/user/login
 // @desc Retrieve user details
 router.post("/login", (req, res) => {

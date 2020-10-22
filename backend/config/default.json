@@ -3,5 +3,6 @@
   "host": "localhost",
   "username": "root",
   "password": "toor",
-  "database": "rtca"
+  "database": "rtca",
+  "backendURL": "http://localhost:5000/api"
 }
