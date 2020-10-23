@@ -1,51 +1,82 @@
-import React, {useState, useEffect} from 'react';
-import ConversationSearch from '../ConversationSearch';
-import ConversationListItem from '../ConversationListItem';
-import Toolbar from '../Toolbar';
-import ToolbarButton from '../ToolbarButton';
-import axios from 'axios';
+import React, { Component } from "react";
+import ConversationSearch from "../ConversationSearch";
+import ConversationListItem from "../ConversationListItem";
+import Toolbar from "../Toolbar";
+import ToolbarButton from "../ToolbarButton";
+import { connect } from "react-redux";
+import Notifications from "react-notification-system-redux";
+import * as action from "../../redux/chatRedux/chatAction";
+import "./ConversationList.css";
 
-import './ConversationList.css';
-
-export default function ConversationList(props) {
-  const [conversations, setConversations] = useState([]);
-  useEffect(() => {
-    getConversations()
-  },[])
-
- const getConversations = () => {
-    axios.get('https://randomuser.me/api/?results=20').then(response => {
-        let newConversations = response.data.results.map(result => {
-          return {
-            photo: result.picture.large,
-            name: `${result.name.first} ${result.name.last}`,
-            text: 'Hello world! This is a long message that needs to be truncated.'
-          };
-        });
-        setConversations([...conversations, ...newConversations])
-    });
+class ConversationList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      conversations: [],
+    };
+    this.props.fetchUsers();
   }
+  // https://dummyimage.com/1024x576/2f353a/ffffff.jpg&text=
+  // https://source.unsplash.com/featured/?
 
+  componentWillReceiveProps = () => {
+    let newConversations = [];
+    let urls = [
+      "https://dummyimage.com/1024x576/2f353a/ffffff.jpg&text=",
+      "https://source.unsplash.com/featured/?",
+    ];
+    console.log(this.props.users);
+    this.props.users.forEach((user) => {
+      newConversations.push({
+        id: user.id,
+        photo: `${
+          urls[user.first_name.charCodeAt(0) % 2]
+        }${user.first_name.charAt(0)}`,
+        name: `${user.first_name} ${user.last_name}`,
+        text: "Hello world!",
+      });
+    });
+    this.setState({
+      conversations: [...newConversations],
+    });
+  };
+
+  // let pictures = [];
+  render() {
     return (
       <div className="conversation-list">
+        <Notifications notifications={this.props.notifications} />
         <Toolbar
           title="Messenger"
-          leftItems={[
-            <ToolbarButton key="cog" icon="ion-ios-cog" />
-          ]}
+          leftItems={[<ToolbarButton key="cog" icon="ion-ios-cog" />]}
           rightItems={[
-            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />,
           ]}
         />
         <ConversationSearch />
-        {
-          conversations.map(conversation =>
-            <ConversationListItem
-              key={conversation.name}
-              data={conversation}
-            />
-          )
-        }
+        {this.state.conversations.map((conversation) => (
+          <ConversationListItem key={conversation.name} data={conversation} />
+        ))}
       </div>
     );
+  }
 }
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    notifications: state.notifications,
+    loading: state.chatReducer.loading,
+    users: state.chatReducer.users,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(action.fetchUsers()),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConversationList);
