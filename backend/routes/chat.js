@@ -37,7 +37,7 @@ router.get("/userMessages/:id/:user", (req, res) => {
   if (!id || !user) {
     return res.status(400).json({ msg: "Invalid User ID" });
   }
-  const query = `SELECT contents.message_content,messages.date_time,messages.phone_number,messages.userID FROM messages inner join messageContent as contents on messages.messageID = contents.messageID where group_user_message = 0 and (messages.phone_number="${id}" or messages.phone_number="${user}") and (messages.userID = "${user}" or messages.userID="${id}") order by messages.date_time`;
+  const query = `SELECT contents.message_content,messages.date_time,messages.phone_number,messages.userID FROM messages inner join messageContent as contents on messages.messageID = contents.messageID where group_user_message = 0 and ((messages.phone_number="${id}" and messages.userID = "${user}") or (messages.phone_number = "${user}" and messages.userID = "${id}")) order by messages.date_time`;
   conn.query(query, (err, result) => {
     if (err) {
       console.log(err);
