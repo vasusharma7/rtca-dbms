@@ -14,6 +14,13 @@ class ConversationList extends Component {
     this.state = {
       conversations: [],
     };
+    if (!localStorage.getItem("id") || !localStorage.getItem("group")) {
+      window.location.href = "/sign-in";
+    }
+    let pathname = `/chat/${localStorage.getItem("group")}`;
+    if (!window.location.pathname.endsWith(localStorage.getItem("group"))) {
+      window.location.pathname = pathname;
+    }
     this.props.fetchUsers();
   }
   // https://dummyimage.com/1024x576/2f353a/ffffff.jpg&text=
@@ -34,6 +41,7 @@ class ConversationList extends Component {
         }${user.first_name.charAt(0)}`,
         name: `${user.first_name} ${user.last_name}`,
         text: "Hello world!",
+        group: user.group ? true : false,
       });
     });
     this.setState({

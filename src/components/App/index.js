@@ -7,7 +7,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        {localStorage.getItem("id") ? <Messenger /> : <Auth />}
+        <Auth />
       </div>
     </Provider>
   );

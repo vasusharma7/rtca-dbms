@@ -23,21 +23,27 @@ class MessageList extends Component {
     (async () => await this.getData())();
     this.socket = global.config.socket;
     this.socket.on("new message", function(data) {
-      if (data.to == self.state.MY_USER_ID) {
-        self.props.notify(data.message);
-        var sound = document.getElementsByClassName("audio-element")[0];
-        if (sound.duration > 0 && !sound.paused) {
-          sound.pause();
-          sound.currentTime = 0;
-        }
-        sound.play();
-      }
       if (
-        data.to == self.state.MY_USER_ID ||
-        data.from == self.state.MY_USER_ID
+        ((data.to == self.state.MY_USER_ID ||
+          data.from == self.state.MY_USER_ID) &&
+          data.group == localStorage.getItem("group_id")) ||
+        (data.dm === false && data.group == localStorage.getItem("group_id"))
       ) {
+        if (
+          data.to == self.state.MY_USER_ID ||
+          data.group == localStorage.getItem("group_id")
+        ) {
+          self.props.notify(data.message);
+          var sound = document.getElementsByClassName("audio-element")[0];
+          if (sound.duration > 0 && !sound.paused) {
+            sound.pause();
+            sound.currentTime = 0;
+          }
+          sound.play();
+        }
         if (data.from != self.state.chat) {
-          self.props.addBadge(data.from);
+          if (data.dm) self.props.addBadge(data.from);
+          else self.props.addBadge(data.group);
         }
         let newMessage = {
           id: self.state.messages.length + 1,

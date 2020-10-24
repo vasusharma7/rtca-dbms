@@ -16,18 +16,11 @@ create table chat_groups
     groupID INTEGER(10),
     group_name VARCHAR(50) not null,
     members INTEGER(10),
-    primary key (groupID),
+    primary key (groupID,group_name,members),
     foreign key (members) references users(phone_number)
     on delete cascade
 );
 
--- create table chat
--- (
---     phone_number INTEGER(10),
---     primary key (phone_number),
---     foreign key (phone_number) references users(phone_number)
---     on delete cascade
--- );
 
 create table member
 (
@@ -49,12 +42,8 @@ create table messages
     userID INTEGER(10),
     groupID INTEGER(10),
     primary key(messageID),
-    foreign key(groupID) references chat_groups (groupID),
-    foreign key (userID) references users (phone_number),
-    CONSTRAINT chk_ID_fk CHECK
-    ((userID IS NULL AND groupID IS NOT NULL)
-        OR
-        (userID IS NOT NULL AND groupID IS NULL))
+    foreign key (userID) references users (phone_number)
+    ON DELETE CASCADE
 );
 
 create table messageContent

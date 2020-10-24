@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-export default class Login extends Component {
+export default class Join extends Component {
   constructor(params) {
     super(params);
     this.state = {
       phone_number: "123",
-      pass: "123",
       group: "family",
     };
   }
@@ -17,12 +16,12 @@ export default class Login extends Component {
   handleSubmit = () => {
     console.log(this.state);
     axios
-      .post(`${global.config.backendURL}/users/login`, this.state)
+      .post(`${global.config.backendURL}/users/join-group`, this.state)
       .then((resp) => {
+        alert("Group Successfully Joined");
         console.log(resp.data);
         localStorage.setItem("id", this.state.phone_number);
-        localStorage.setItem("group", this.state.group);
-        window.location.href = `chat/${this.state.group}`;
+        window.location.href = "/sign-in";
       })
       .catch((err) => {
         alert(err.response.data.msg);
@@ -32,7 +31,7 @@ export default class Login extends Component {
   render() {
     return (
       <form>
-        <h3>Sign In</h3>
+        <h3>Join Group</h3>
 
         <div className="form-group">
           <label>Phone Number</label>
@@ -41,22 +40,11 @@ export default class Login extends Component {
             type="tel"
             name="phone_number"
             className="form-control"
-            placeholder="Enter Phone Number"
+            placeholder="Username"
             onChange={this.handleInput}
           />
         </div>
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            name="pass"
-            value={this.state.pass}
-            type="password"
-            className="form-control"
-            placeholder="Enter password"
-            onChange={this.handleInput}
-          />
-        </div>
         <div className="form-group">
           <label>Group Name</label>
           <input
@@ -68,18 +56,6 @@ export default class Login extends Component {
             onChange={this.handleInput}
           />
         </div>
-        {/* <div className="form-group">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
-          </div>
-        </div> */}
 
         <button
           type="button"
@@ -89,11 +65,7 @@ export default class Login extends Component {
           Submit
         </button>
         <p className="forgot-password text-right">
-          Don't Have an Account ? <a href="/sign-up">Sign Up</a>
-        </p>
-
-        <p className="forgot-password text-right">
-          Want to join a group ? <a href="/join-group">Join</a>
+          Don't Have a Group ? <a href="/make-group">Make</a>
         </p>
       </form>
     );

@@ -10,7 +10,7 @@ export const initalState = {
   loading: false,
   users: [],
   messages: [],
-  chat: null,
+  chat: "",
   online: [],
   dm: true,
   badge: {},

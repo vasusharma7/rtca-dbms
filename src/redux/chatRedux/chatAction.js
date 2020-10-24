@@ -39,11 +39,12 @@ export const addBadge = (user) => {
 
 export const fetchUsers = () => {
   const id = localStorage.getItem("id");
+  const group = localStorage.getItem("group");
   if (!id) return;
   return async function(dispatch) {
     dispatch(fetchRequest());
     await axios
-      .get(`${global.config.backendURL}/chat/users/${id}`)
+      .get(`${global.config.backendURL}/chat/users/${id}/${group}`)
       .then(async (res) => {
         dispatch(addData("users", res.data));
         dispatch(
@@ -71,19 +72,16 @@ export const fetchUsers = () => {
   };
 };
 
-export const fetchMessages = (dm, chat) => {
+export const fetchMessages = (dm, user) => {
   const id = localStorage.getItem("id");
+  const group = localStorage.getItem("group_id");
   if (!id) return;
-  let url;
-  if (dm) {
-    url = `${global.config.backendURL}/chat/userMessages/${id}/${chat}`;
-  } else {
-    //
-  }
+  let url = `${global.config.backendURL}/chat/userMessages`;
+
   return async function(dispatch) {
     dispatch(fetchRequest());
     await axios
-      .get(url)
+      .post(url, { id, group, user, dm })
       .then(async (res) => {
         dispatch(addData("messages", res.data));
         dispatch(

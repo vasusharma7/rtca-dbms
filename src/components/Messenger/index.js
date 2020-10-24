@@ -14,6 +14,9 @@ class Messenger extends Component {
     this.state = {
       conversations: [],
     };
+    if (!localStorage.getItem("id")) {
+      window.location.href = "/sign-in";
+    }
     const socket = global.config.socket;
     socket.emit("new user", localStorage.getItem("id"));
     let self = this;

@@ -23,7 +23,8 @@ class Compose extends Component {
       from: this.state.id,
       message: this.state.message,
       to: this.props.chat,
-      dm: true,
+      dm: this.props.dm,
+      group: localStorage.getItem("group_id"),
     });
     this.setState({ message: "" });
   };
@@ -73,6 +74,7 @@ const mapStateToProps = (state) => {
     users: state.chatReducer.users,
     online: state.chatReducer.online,
     chat: state.chatReducer.chat,
+    dm: state.chatReducer.dm,
   };
 };
 
