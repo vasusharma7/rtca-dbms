@@ -1,12 +1,19 @@
 .message-list-container {
+  background-image: url("wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   padding: 10px;
   padding-bottom: 70px;
+  height: calc(90vh - 127px);
 }
+
 .conversation-list-item {
   display: flex;
   align-items: center;
   padding: 10px;
 }
+
 .conversation-photo {
   width: 50px;
   height: 50px;
