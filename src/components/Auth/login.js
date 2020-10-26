@@ -32,7 +32,7 @@ export default class Login extends Component {
   render() {
     return (
       <form>
-        <h3>Sign In</h3>
+        <h2>Sign In</h2>
 
         <div className="form-group">
           <label>Phone Number</label>
@@ -83,17 +83,17 @@ export default class Login extends Component {
 
         <button
           type="button"
-          className="btn btn-primary btn-block"
+          className="btn btn-warning btn-block"
           onClick={this.handleSubmit}
         >
           Submit
         </button>
         <p className="forgot-password text-right">
-          Don't Have an Account ? <a href="/sign-up">Sign Up</a>
+          Don't have an account? <a href="/sign-up">Sign Up</a>
         </p>
 
         <p className="forgot-password text-right">
-          Want to join a group ? <a href="/join-group">Join</a>
+          Want to join a group? <a href="/join-group">Join</a>
         </p>
       </form>
     );

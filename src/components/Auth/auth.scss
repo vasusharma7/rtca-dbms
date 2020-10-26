@@ -1,10 +1,25 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
 
+.btn-warning {
+  color: #000000;
+  background-color: #ffa31a !important;
+  border: #ffa31a !important;
+}
+
+.btn-warning:hover {
+  color: #000000;
+  background-color: #e68a00 !important;
+  border: #e68a00 !important;
+}
+
 * {
   box-sizing: border-box;
 }
 .auth {
-  background: #1c8ef9 !important;
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -21,6 +36,7 @@ label,
 span {
   font-weight: 500;
   font-family: "Fira Sans", sans-serif;
+  text-align: center;
 }
 
 body,
@@ -49,14 +65,14 @@ html,
   width: 450px;
   margin: auto;
   background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
   transition: all 0.3s;
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: #ffa31a;
   box-shadow: none;
 }
 
@@ -74,15 +90,21 @@ html,
 .forgot-password,
 .forgot-password a {
   text-align: right;
-  font-size: 13px;
+  font-size: 14px;
+  font-style: italic;
   padding-top: 10px;
   color: #7f7d7d;
   margin: 0;
 }
 
 .forgot-password a {
-  color: #167bff;
+  color: #ffa31a;
 }
+
+.forgot-password a:hover {
+  color: #ffa31a;
+}
+
 @media (max-width: 560px) {
   .auth-inner {
     width: 90vw;

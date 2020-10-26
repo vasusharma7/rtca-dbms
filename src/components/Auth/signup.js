@@ -34,10 +34,10 @@ export default class SignUp extends Component {
     return (
       <form>
         {this.state.login && <Redirect to="/join-group" />}
-        <h3>Sign Up</h3>
+        <h2>Sign Up</h2>
 
         <div className="form-group">
-          <label>First name</label>
+          <label>First Name</label>
           <input
             type="text"
             className="form-control"
@@ -49,7 +49,7 @@ export default class SignUp extends Component {
         </div>
 
         <div className="form-group">
-          <label>Last name</label>
+          <label>Last Name</label>
           <input
             type="text"
             className="form-control"
@@ -86,13 +86,13 @@ export default class SignUp extends Component {
 
         <button
           type="button"
-          className="btn btn-primary btn-block"
+          className="btn btn-warning btn-block"
           onClick={this.handleSubmit}
         >
           Sign Up
         </button>
         <p className="forgot-password text-right">
-          Already registered <a href="/sign-in">sign in?</a>
+          Already registered? <a href="/sign-in">Sign In</a>
         </p>
       </form>
     );

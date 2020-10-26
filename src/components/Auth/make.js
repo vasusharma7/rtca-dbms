@@ -31,7 +31,7 @@ export default class Make extends Component {
   render() {
     return (
       <form>
-        <h3>Make Group</h3>
+        <h2>Make Group</h2>
 
         <div className="form-group">
           <label>Phone Number</label>
@@ -59,13 +59,13 @@ export default class Make extends Component {
 
         <button
           type="button"
-          className="btn btn-primary btn-block"
+          className="btn btn-warning btn-block"
           onClick={this.handleSubmit}
         >
           Submit
         </button>
         <p className="forgot-password text-right">
-          Want to join a group ? <a href="/join-group">Join</a>
+          Want to join a group? <a href="/join-group">Join</a>
         </p>
       </form>
     );
