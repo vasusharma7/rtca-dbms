@@ -1,5 +1,6 @@
 import React from 'react';
 import './ConversationSearch.css';
+import { FaSearch } from 'react-icons/fa';
 
 export default function ConversationSearch() {
     return (
@@ -9,6 +10,9 @@ export default function ConversationSearch() {
           className="conversation-search-input"
           placeholder="Search Messages"
         />
+        <div className="search-icon">
+            <FaSearch />
+        </div>
       </div>
     );
 }
