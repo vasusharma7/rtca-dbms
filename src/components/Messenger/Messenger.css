@@ -2,9 +2,17 @@
   display: grid;
   width: 100%;
   height: 100vh;
-  background: #eeeef1;
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
-  grid-template-columns: 450px auto;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+
+  grid-template-columns: 350px auto;
   grid-template-rows: 60px auto 60px;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
@@ -18,6 +26,7 @@
   position: relative;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .sidebar {
