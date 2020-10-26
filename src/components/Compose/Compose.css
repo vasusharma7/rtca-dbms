@@ -4,38 +4,48 @@
   align-items: center;
   background: white;
   border-top: 1px solid #eeeef1;
-  position: fixed;
-  width: calc(100% - 20px);
+  position: sticky;
+  width: 100%;
   bottom: 0px;
 }
 
-@supports (backdrop-filter: blur(20px)) {
+@supports {
   .compose {
-    justify-content: flex-end;
-    display: inline-block;
     border: none;
     background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
   }
 }
 
 .compose-input {
+  flex: 1;
   border: none;
   font-size: 14px;
   height: 40px;
+  width: 100%;
   background: none;
+  padding: 10px;
+  margin-left: 20px;
+  border-radius: 40px;
+  background-color: #d9d9d9;
 }
+
 .options {
-  position: ;
+  background-color: inherit;
+  border: none;
+  padding: none;
 }
 
 .compose-input::placeholder {
-  opacity: 0.3;
+  opacity: 1;
 }
 
 .compose .toolbar-button {
-  color: #bbbbbf;
+  color: #8a8a5c;
   margin-left: 15px;
+}
+
+.compose .toolbar-button:hover {
+  color: #4d4d33;
 }
 
 .compose .toolbar-button:hover {

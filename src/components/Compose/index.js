@@ -31,6 +31,9 @@ class Compose extends Component {
   render() {
     return (
       <div className="compose">
+      {
+        this.props.leftItems
+      }
         <input
           value={this.state.message}
           type="text"
@@ -41,25 +44,24 @@ class Compose extends Component {
             this.setState({ message: e.target.value });
           }}
           className="compose-input"
-          placeholder="Type a message, @name"
+          placeholder="Type a message"
         />
         <button
           className="options"
           style={{
-            backgroundColor: "#0063ce",
-            borderRadius: "50px",
-            border: 0,
-            transform: "scale(1.5)",
+            outline: "None",
           }}
           onClick={(e) => {
             e.preventDefault();
             this.sendMessage();
           }}
         >
-          <i class="ion-ios-send" style={{ color: "white" }} />
+        {
+        this.props.rightItems
+        }
         </button>
         {/* <div className="options">
-        
+
       </div> */}
         {/* {props.rightItems} */}
       </div>
