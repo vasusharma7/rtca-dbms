@@ -16,7 +16,12 @@ export default function Message(props) {
       ].join(" ")}
       style={{ marginBottom: 5 }}
     >
-      {showTimestamp && <div className="timestamp">{friendlyTimestamp}</div>}
+      {showTimestamp &&
+        <div className="blockcenter">
+          <div className="timestamp">
+            {friendlyTimestamp}
+          </div>
+        </div>}
 
       <div className="bubble-container">
         {!isMine ? (
