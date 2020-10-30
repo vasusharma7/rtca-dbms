@@ -3,7 +3,14 @@ import moment from "moment";
 import "./Message.css";
 
 export default function Message(props) {
-  const { data, isMine, startsSequence, endsSequence, showTimestamp } = props;
+  const {
+    data,
+    isMine,
+    startsSequence,
+    endsSequence,
+    showTimestamp,
+    author,
+  } = props;
 
   const friendlyTimestamp = moment(data.timestamp).format("LLLL");
   return (
@@ -16,12 +23,11 @@ export default function Message(props) {
       ].join(" ")}
       style={{ marginBottom: 5 }}
     >
-      {showTimestamp &&
+      {showTimestamp && (
         <div className="blockcenter">
-          <div className="timestamp">
-            {friendlyTimestamp}
-          </div>
-        </div>}
+          <div className="timestamp">{friendlyTimestamp}</div>
+        </div>
+      )}
 
       <div className="bubble-container">
         {!isMine ? (
@@ -33,8 +39,10 @@ export default function Message(props) {
               objectFit: "cover",
               marginRight: "10px",
             }}
-            src={`https://dummyimage.com/1024x576/2f353a/ffffff.jpg&text=U`}
             alt="dp"
+            src={`https://dummyimage.com/1024x576/2f353a/fff.jpg&text=${localStorage
+              .getItem(author.toString())
+              .charAt(0)}`}
           />
         ) : (
           <></>
@@ -54,7 +62,9 @@ export default function Message(props) {
               objectFit: "cover",
               marginLeft: "10px",
             }}
-            src={`https://dummyimage.com/1024x576/2f353a/fff.jpg&text=U`}
+            src={`https://dummyimage.com/1024x576/2f353a/ffffff.jpg&text=${localStorage
+              .getItem("name")
+              .charAt(0)}`}
             alt="dp"
           />
         )}

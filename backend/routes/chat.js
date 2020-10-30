@@ -23,7 +23,7 @@ router.get("/users/:id/:group", (req, res) => {
         let groupID = "";
         result.forEach((record) => {
           groupID = record.groupID;
-          if (record.phone_number == id) return;
+          // if (record.phone_number == id) return;
           data.push({
             id: record.phone_number,
             first_name: record.first_name,

@@ -34,15 +34,23 @@ class ConversationList extends Component {
     ];
     console.log(this.props.users);
     this.props.users.forEach((user) => {
-      newConversations.push({
-        id: user.id,
-        photo: `${
-          urls[user.first_name.charCodeAt(0) % 2]
-        }${user.first_name.charAt(0)}`,
-        name: `${user.first_name} ${user.last_name}`,
-        text: "Hello world!",
-        group: user.group ? true : false,
-      });
+      if (user.id == localStorage.getItem("id")) {
+        localStorage.setItem("name", `${user.first_name} ${user.last_name}`);
+      } else {
+        newConversations.push({
+          id: user.id,
+          photo: `${
+            urls[user.first_name.charCodeAt(0) % 2]
+          }${user.first_name.charAt(0)}`,
+          name: `${user.first_name} ${user.last_name}`,
+          text: "Hello world!",
+          group: user.group ? true : false,
+        });
+      }
+      localStorage.setItem(
+        user.id.toString(),
+        `${user.first_name} ${user.last_name}`
+      );
     });
     this.setState({
       conversations: [...newConversations],
@@ -53,7 +61,7 @@ class ConversationList extends Component {
   render() {
     return (
       <div className="conversation-list">
-        <Notifications notifications={this.props.notifications} />
+        {/* <Notifications notifications={this.props.notifications} /> */}
         <Toolbar
           title="Messenger"
           leftItems={[<ToolbarButton key="cog" icon="ion-ios-cog" />]}

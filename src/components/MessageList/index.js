@@ -126,6 +126,7 @@ class MessageList extends Component {
       tempMessages.push(
         <Message
           key={i}
+          author={current.author}
           isMine={isMine}
           startsSequence={startsSequence}
           endsSequence={endsSequence}
@@ -153,7 +154,7 @@ class MessageList extends Component {
               <Notifications notifications={this.props.notifications} />
             )}
             <Toolbar
-              title={`${this.props.chat}`}
+              title={`${localStorage.getItem(this.props.chat.toString())}`}
               rightItems={[
                 <ToolbarButton
                   key="info"
@@ -181,9 +182,7 @@ class MessageList extends Component {
                 //<ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
                 <ToolbarButton key="emoji" icon="ion-ios-happy" />,
               ]}
-              rightItems={[
-          <ToolbarButton key="send" icon="ion-ios-send" />
-              ]}
+              rightItems={[<ToolbarButton key="send" icon="ion-ios-send" />]}
             />
           </div>
         ) : (
