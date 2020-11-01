@@ -216,8 +216,6 @@ class MessageList extends Component {
                         icon="ion-ios-image"
                         onClick={() => this.setState({ upload: true })}
                       />,
-                      //<ToolbarButton key="money" icon="ion-ios-card" />,
-                      //<ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
                       <ToolbarButton key="emoji" icon="ion-ios-happy" />,
                     ]
               }

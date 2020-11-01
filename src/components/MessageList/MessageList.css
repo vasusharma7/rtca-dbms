@@ -6,7 +6,7 @@
   grid:
     "toolbar" auto
     "message-list-container" 1fr
-    "compose" auto;
+    "divide" auto;
   height: 100%;
 }
 

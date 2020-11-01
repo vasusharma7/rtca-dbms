@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import "./Compose.css";
 import { connect } from "react-redux";
 import * as action from "../../redux/chatRedux/chatAction";
+import Emojis from "../Emojis"
+
 class Compose extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: localStorage.getItem("id"),
       message: "",
+      showEmojis: false,
     };
     this.socket = global.config.socket;
     // let self = this;
@@ -28,12 +31,33 @@ class Compose extends Component {
     });
     this.setState({ message: "" });
   };
+
   render() {
     return (
+      <div className="divide">
+      <div className="emoji">
+      {this.state.showEmojis && <Emojis />}
+      </div>
       <div className="compose">
+
       {
         this.props.leftItems
       }
+
+      <button
+      className="options"
+      style={{
+        outline: "None",
+      }}
+      onClick={(e) => {
+        e.preventDefault();
+        this.setState({ showEmojis: true });
+      }}
+    >
+    {
+    this.props.emoji
+    }
+    </button>
         <input
           value={this.state.message}
           type="text"
@@ -46,6 +70,7 @@ class Compose extends Component {
           className="compose-input"
           placeholder="Type a message"
         />
+
         <button
           className="options"
           style={{
@@ -57,13 +82,15 @@ class Compose extends Component {
           }}
         >
         {
-        this.props.rightItems
+        this.props.enter
         }
         </button>
+
         {/* <div className="options">
 
       </div> */}
         {/* {props.rightItems} */}
+      </div>
       </div>
     );
   }
