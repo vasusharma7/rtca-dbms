@@ -1,8 +1,21 @@
+@import "../Toolbar/Toolbar.css";
+@import "../Compose/Compose.css";
+
+.message-list {
+  display: grid;
+  grid:
+    'toolbar' auto
+    'message-list-container' 1fr
+    'compose' auto;
+  height: 100%;
+}
+
 .message-list-container {
+  grid-area: message-list-container;
   background-image: url("wallpaper.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: inherit;
+  background-attachment: fixed;
   padding: 10px;
   padding-bottom: 70px;
 }
