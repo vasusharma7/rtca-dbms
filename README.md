@@ -16,3 +16,7 @@
  - Vasvi Gupta
  
  __This is Database Management System Course Proeject__
+
+**How it is different from other chat applications ?** 
+ 
+  - You can make different groups for family/work. You can be a part of different groups at the same time. Based on ideology of Slack
