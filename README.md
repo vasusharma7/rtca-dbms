@@ -5,7 +5,7 @@
 
 
 <p align="center">
-  <img src="./assets/react-messenger-screen.png" />
+  <img src="./screenshots/Screenshot from 2020-11-01 22-58-00.png" />
 </p>
 
 <hr />
