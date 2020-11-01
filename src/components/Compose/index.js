@@ -35,10 +35,11 @@ class Compose extends Component {
   render() {
     return (
       <div className="divide">
-      <div>
+      <div className="emoji">
       {this.state.showEmojis && <Emojis />}
       </div>
       <div className="compose">
+
       {
         this.props.leftItems
       }

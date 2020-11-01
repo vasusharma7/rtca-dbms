@@ -180,9 +180,9 @@ class MessageList extends Component {
                 <ToolbarButton key="audio" icon="ion-ios-mic" />,
                 //<ToolbarButton key="money" icon="ion-ios-card" />,
                 //<ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-                <ToolbarButton key="emoji" icon="ion-ios-happy" />,
               ]}
-              rightItems={[<ToolbarButton key="send" icon="ion-ios-send" />]}
+              emoji={[<ToolbarButton key="emoji" icon="ion-ios-happy" />]}
+              enter={[<ToolbarButton key="send" icon="ion-ios-send" />]}
             />
           </div>
         ) : (
