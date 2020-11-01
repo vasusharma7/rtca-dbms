@@ -9,6 +9,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "atob": "^2.1.2",
+    "b64-to-blob": "^1.2.19",
     "bcryptjs": "^2.4.3",
     "config": "^3.2.5",
     "cors": "^2.8.5",
