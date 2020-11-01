@@ -1,4 +1,5 @@
 .compose {
+  grid-area: compose;
   padding: 10px;
   display: flex;
   align-items: center;
