@@ -4,15 +4,15 @@
 .message-list {
   display: grid;
   grid:
-    'toolbar' auto
-    'message-list-container' 1fr
-    'compose' auto;
+    "toolbar" auto
+    "message-list-container" 1fr
+    "compose" auto;
   height: 100%;
 }
 
 .message-list-container {
   grid-area: message-list-container;
-  background-image: url("wallpaper.jpg");
+  background-image: url("../../assets/back.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import "./Message.css";
+import fs from "fs";
 
 export default function Message(props) {
   const {
@@ -48,8 +49,27 @@ export default function Message(props) {
           <></>
         )}
 
-        <div className="bubble" title={friendlyTimestamp}>
-          {data.message}
+        <div
+          className={data.message == "" && data.image ? "" : "bubble"}
+          title={friendlyTimestamp}
+        >
+          {data.message == "" && data.image ? (
+            <a
+              href={`${global.config.images}${data.image.toString("utf8")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                style={{ borderWidth: "2px", borderColor: "orange" }}
+                height={200}
+                width={200}
+                src={`${global.config.images}${data.image.toString("utf8")}`}
+                alt="media"
+              />
+            </a>
+          ) : (
+            data.message
+          )}
         </div>
         {!isMine ? (
           <></>

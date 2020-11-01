@@ -4,8 +4,8 @@ export default class Join extends Component {
   constructor(params) {
     super(params);
     this.state = {
-      phone_number: "123",
-      group: "family",
+      phone_number: "",
+      group: "",
     };
   }
   handleInput = (e) => {
@@ -24,7 +24,11 @@ export default class Join extends Component {
         window.location.href = "/sign-in";
       })
       .catch((err) => {
-        alert(err.response.data.msg);
+        try {
+          alert(err.response.data.msg);
+        } catch {
+          alert("Something Went Wrong");
+        }
         console.log(err.response);
       });
   };

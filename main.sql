@@ -50,8 +50,8 @@ create table messageContent
 (
     messageID INTEGER(10),
     message_content VARCHAR(1000),
-    file_as_blob LONGBLOB,
-    thumbnail LONGBLOB,
+    file_as_blob VARCHAR(500),
+    thumbnail VARCHAR(500),
     metadata VARCHAR(1000),
     primary key (messageID),
     foreign key (messageID) references messages(messageID)

@@ -10,6 +10,7 @@ import Notifications from "react-notification-system-redux";
 import * as action from "../../redux/chatRedux/chatAction";
 import ring from "../../assets/ring.mp3";
 import "./MessageList.css";
+import FileBase64 from "react-file-base64";
 
 class MessageList extends Component {
   constructor(props) {
@@ -18,11 +19,14 @@ class MessageList extends Component {
       messages: [],
       MY_USER_ID: localStorage.getItem("id"),
       first: true,
+      constPics: [],
+      upload: false,
     };
     let self = this;
     (async () => await this.getData())();
     this.socket = global.config.socket;
     this.socket.on("new message", function(data) {
+      console.log(data);
       if (
         ((data.to == self.state.MY_USER_ID ||
           data.from == self.state.MY_USER_ID) &&
@@ -50,6 +54,7 @@ class MessageList extends Component {
           author: data.from,
           message: data.message,
           timestamp: data.time,
+          image: data.image,
         };
         self.setState({ messages: [...self.state.messages, newMessage] });
       } else {
@@ -88,6 +93,9 @@ class MessageList extends Component {
     while (i < messageCount) {
       let previous = messages[i - 1];
       let current = messages[i];
+      if (current.image) {
+        console.log(current.image);
+      }
       let next = messages[i + 1];
       let isMine = current.author == this.state.MY_USER_ID;
       let currentMoment = moment(current.timestamp);
@@ -140,11 +148,27 @@ class MessageList extends Component {
     }
     return tempMessages;
   };
-
+  savePicsToState(file) {
+    this.setState({ constPics: file, upload: false });
+    const res = window.confirm("Do you want to send ?");
+    if (res) {
+      this.socket.emit("new image", {
+        id: new Date().getTime(),
+        from: this.state.MY_USER_ID,
+        message: "",
+        to: this.props.chat,
+        dm: this.props.dm,
+        image: this.state.constPics,
+        group: localStorage.getItem("group_id"),
+      });
+    } else {
+      alert("cancel");
+    }
+  }
   render() {
     return (
       <>
-        <ReactNotification />
+        {/* <ReactNotification /> */}
         <audio className="audio-element" style={{ display: "none" }}>
           <source src={ring} />
         </audio>
@@ -174,14 +198,29 @@ class MessageList extends Component {
             </div>
 
             <Compose
-              leftItems={[
-                <ToolbarButton key="photo" icon="ion-ios-camera" />,
-                <ToolbarButton key="image" icon="ion-ios-image" />,
-                <ToolbarButton key="audio" icon="ion-ios-mic" />,
-                //<ToolbarButton key="money" icon="ion-ios-card" />,
-                //<ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-                <ToolbarButton key="emoji" icon="ion-ios-happy" />,
-              ]}
+              leftItems={
+                this.state.upload
+                  ? [
+                      <FileBase64
+                        multiple={false}
+                        value={this.state.constPics}
+                        onDone={(file) => {
+                          // files.forEach((ele) => ele.base64);
+                          this.savePicsToState(file);
+                        }}
+                      />,
+                    ]
+                  : [
+                      <ToolbarButton
+                        key="image"
+                        icon="ion-ios-image"
+                        onClick={() => this.setState({ upload: true })}
+                      />,
+                      //<ToolbarButton key="money" icon="ion-ios-card" />,
+                      //<ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
+                      <ToolbarButton key="emoji" icon="ion-ios-happy" />,
+                    ]
+              }
               rightItems={[<ToolbarButton key="send" icon="ion-ios-send" />]}
             />
           </div>

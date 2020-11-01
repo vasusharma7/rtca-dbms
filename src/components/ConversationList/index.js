@@ -56,7 +56,13 @@ class ConversationList extends Component {
       conversations: [...newConversations],
     });
   };
-
+  logout = () => {
+    const res = window.confirm("Do you want to logout ?");
+    if (res) {
+      localStorage.clear();
+      window.location.reload();
+    }
+  };
   // let pictures = [];
   render() {
     return (
@@ -64,10 +70,18 @@ class ConversationList extends Component {
         {/* <Notifications notifications={this.props.notifications} /> */}
         <Toolbar
           title="Messenger"
-          leftItems={[<ToolbarButton key="cog" icon="ion-ios-cog" />]}
-          rightItems={[
-            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />,
+          leftItems={[
+            <ToolbarButton
+              key="cog"
+              icon="ion-ios-log-out"
+              onClick={() => this.logout()}
+            />,
           ]}
+          rightItems={
+            [
+              // <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />,
+            ]
+          }
         />
         <ConversationSearch />
         {this.state.conversations.map((conversation) => (

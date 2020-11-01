@@ -5,10 +5,10 @@ export default class SignUp extends Component {
   constructor(params) {
     super(params);
     this.state = {
-      first_name: "Vasu",
-      last_name: "Sharma",
-      phone_number: "123",
-      pass: "123",
+      first_name: "",
+      last_name: "",
+      phone_number: "",
+      pass: "",
       login: false,
     };
   }
@@ -19,16 +19,28 @@ export default class SignUp extends Component {
   };
   handleSubmit = () => {
     console.log(this.state);
-    axios
-      .post(`${global.config.backendURL}/users/register`, this.state)
-      .then((resp) => {
-        console.log(resp.data);
-        this.setState({ login: true });
-      })
-      .catch((err) => {
-        alert(err.response.data.msg);
-        console.log(err.response);
-      });
+    if (this.state.phone_number.toString().length != 10) {
+      alert("Invalid Phone Number");
+      return;
+    }
+    try {
+      axios
+        .post(`${global.config.backendURL}/users/register`, this.state)
+        .then((resp) => {
+          console.log(resp.data);
+          this.setState({ login: true });
+        })
+        .catch((err) => {
+          try {
+            alert(err.response.data.msg);
+          } catch {
+            alert("Something Went Wrong");
+          }
+          console.log(err.response);
+        });
+    } catch (err) {
+      alert("Something Went Wrong");
+    }
   };
   render() {
     return (
