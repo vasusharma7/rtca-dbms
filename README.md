@@ -9,3 +9,10 @@
 </p>
 
 <hr />
+
+**Members** 
+
+ - Vasu Sharma
+ - Vasvi Gupta
+ 
+ __This is Database Management System Course Proeject__
