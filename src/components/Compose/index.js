@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./Compose.css";
 import { connect } from "react-redux";
 import * as action from "../../redux/chatRedux/chatAction";
-import Emojis from "../Emojis"
+
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 class Compose extends Component {
   constructor(props) {
@@ -15,6 +17,36 @@ class Compose extends Component {
     this.socket = global.config.socket;
     // let self = this;
   }
+
+  showEmojis = e => {
+    this.setState(
+      {
+        showEmojis: true
+      },
+      () => document.addEventListener("click", this.closeMenu)
+    );
+  };
+
+  closeMenu = e => {
+    console.log(this.emojiPicker);
+    if (this.emojiPicker !== null && !this.emojiPicker.contains(e.target)) {
+      this.setState(
+        {
+          showEmojis: false
+        },
+        () => document.removeEventListener("click", this.closeMenu)
+      );
+    }
+  };
+
+  addEmoji = e => {
+    // console.log(e.native);
+    let emoji = e.native;
+    this.setState({
+      message: this.state.message + emoji
+    });
+  };
+
   sendMessage = () => {
     if (
       this.state.message === "" ||
@@ -35,29 +67,27 @@ class Compose extends Component {
   render() {
     return (
       <div className="divide">
-      <div className="emoji">
-      {this.state.showEmojis && <Emojis />}
-      </div>
+
       <div className="compose">
 
       {
         this.props.image
       }
 
-      <button
-      className="options"
-      style={{
-        outline: "None",
-      }}
-      onClick={(e) => {
-        e.preventDefault();
-        this.setState({ showEmojis: true });
-      }}
-    >
-    {
-    this.props.emoji
-    }
-    </button>
+      {this.state.showEmojis ? (
+        <div className="emojiPicker" ref={el => (this.emojiPicker = el)}>
+          <Picker
+            onSelect={this.addEmoji}
+            emojiTooltip={true}
+            title="RTCA"
+          />
+        </div>
+      ) : (
+        <div className="getEmojiButton" onClick={this.showEmojis}>
+          {this.props.emoji}
+        </div>
+      )}
+
         <input
           value={this.state.message}
           type="text"
@@ -85,6 +115,8 @@ class Compose extends Component {
         this.props.enter
         }
         </button>
+
+
 
         {/* <div className="options">
 

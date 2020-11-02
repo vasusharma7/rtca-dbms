@@ -1,15 +1,16 @@
-.emoji {
+.emojiPicker {
   position: absolute;
-  bottom: 0px;
+  bottom: 64px;
+  right: 0px;
+  float: right;
+  margin-left: 200px;
 }
 
-.divide {
-  grid-area: divide;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  width: 100%;
-  bottom: 0px;
+.getEmojiButton {
+  float: right;
+  border: none;
+  margin: 0;
+  cursor: pointer;
 }
 
 .compose {
