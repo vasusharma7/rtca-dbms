@@ -198,7 +198,7 @@ class MessageList extends Component {
             </div>
 
             <Compose
-              leftItems={
+              image={
                 this.state.upload
                   ? [
                       <FileBase64
@@ -215,11 +215,11 @@ class MessageList extends Component {
                         key="image"
                         icon="ion-ios-image"
                         onClick={() => this.setState({ upload: true })}
-                      />,
-                      <ToolbarButton key="emoji" icon="ion-ios-happy" />,
+                      />
                     ]
               }
-              rightItems={[<ToolbarButton key="send" icon="ion-ios-send" />]}
+              emoji={[<ToolbarButton key="emoji" icon="ion-ios-happy" />]}
+              enter={[<ToolbarButton key="send" icon="ion-ios-send" />]}
             />
           </div>
         ) : (
