@@ -15,7 +15,7 @@
  - Vasu Sharma - 111803127  
  - Vasvi Gupta - 111803128
  
- __This is Database Management System Course Proeject__
+ __This is Database Management System Course Project__
  
  **Tech Stack Used**
  
@@ -36,4 +36,6 @@
 
 **How it is different from other chat applications ?** 
  
-  - You can make different groups for family/work. You can be a part of different groups at the same time. Based on ideology of Slack
+  - You can make different groups for family/work. You can be a part of different groups at the same time. Based on ideology of Slack.
+  - Users in a group can interact with personal messages as well as have a group chat
+  - Having a different groups for different purposes helps to keep things organised.
