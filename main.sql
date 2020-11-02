@@ -36,7 +36,7 @@ create table member
 create table messages
 (
     messageID INTEGER(10),
-    phone_number INTEGER(10),
+    phone_number BIGINT(10),
     date_time TIMESTAMP,
     group_user_message BIT(1),
     userID BIGINT(10),
