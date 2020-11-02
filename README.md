@@ -3,7 +3,7 @@
   <h1 align="center">Real Time Chat Application</h1>  
 </p>
 
-
+**Hosted on http://dbms.vasusharma.me/**
 <p align="center">
   <img src="./screenshots/Screenshot from 2020-11-01 22-58-00.png" />
 </p>
