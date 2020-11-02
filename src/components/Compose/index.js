@@ -66,8 +66,6 @@ class Compose extends Component {
 
   render() {
     return (
-      <div className="divide">
-
       <div className="compose">
 
       {
@@ -115,14 +113,6 @@ class Compose extends Component {
         this.props.enter
         }
         </button>
-
-
-
-        {/* <div className="options">
-
-      </div> */}
-        {/* {props.rightItems} */}
-      </div>
       </div>
     );
   }
