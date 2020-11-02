@@ -6,7 +6,7 @@ import Login from "./login";
 import SignUp from "./signup";
 import Join from "./join";
 import Make from "./make";
-
+import logo from "../../assets/logo.png";
 function Chores() {
   return (
     <Router>
@@ -14,7 +14,9 @@ function Chores() {
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
           <div className="container justify-content-center">
             <Link className="navbar-brand" to={"/sign-in"}>
-              <h1>RTCA</h1>
+              {/* <h1> */}
+              <img src={logo} alt="RTCA" style={{ width: "22vw" }} />
+              {/* </h1> */}
             </Link>
           </div>
         </nav>
