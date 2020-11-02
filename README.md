@@ -5,7 +5,7 @@
 
 **Hosted on http://dbms.vasusharma.me/**
 <p align="center">
-  <img src="./screenshots/Screenshot from 2020-11-01 22-58-00.png" />
+  <img src="./screenshots/Screenshot from 2020-11-02 14-30-31.png" />
 </p>
 
 <hr />
