@@ -12,10 +12,27 @@
 
 **Members** 
 
- - Vasu Sharma
- - Vasvi Gupta
+ - Vasu Sharma - 111803127  
+ - Vasvi Gupta - 111803128
  
  __This is Database Management System Course Proeject__
+ 
+ **Tech Stack Used**
+ 
+ - React for Frontend
+ - Express framework for backend
+ - MySQL database
+ - Hosted on AWS
+ 
+ 
+ **Features**
+ 
+
+  - Make Groups
+  - Send group or personal messages
+  - send pictures
+  - emojis also supported
+  - users can join multiple groups and hence keep separate groups for different works.
 
 **How it is different from other chat applications ?** 
  
