@@ -41,7 +41,7 @@ class Compose extends Component {
       <div className="compose">
 
       {
-        this.props.leftItems
+        this.props.image
       }
 
       <button
