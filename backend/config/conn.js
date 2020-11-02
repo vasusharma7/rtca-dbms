@@ -6,6 +6,7 @@ const conn = mysql.createConnection({
   user: config.get("username"),
   password: config.get("password"),
   database: config.get("database"),
+  charset: config.get("charset"),
 });
 
 conn.connect(function (err) {

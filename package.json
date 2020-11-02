@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.1",
     "bootstrap": "^4.5.3",
+    "emoji-mart": "^3.0.0",
     "emoji-picker-react": "^3.2.4",
     "express-fileupload": "^1.2.0",
     "jquery": "^3.5.1",

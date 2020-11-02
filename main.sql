@@ -1,5 +1,6 @@
 drop database if exists rtca;
-create database rtca;
+set names utf8mb4;
+create database rtca character set = utf8mb4 collate = utf8mb4_unicode_ci;
 use rtca;
 
 create table users
@@ -49,11 +50,13 @@ create table messages
 create table messageContent
 (
     messageID INTEGER(10),
-    message_content VARCHAR(1000),
+    message_content VARCHAR(140) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
     file_as_blob VARCHAR(500),
     thumbnail VARCHAR(500),
     metadata VARCHAR(1000),
     primary key (messageID),
     foreign key (messageID) references messages(messageID)
     on delete cascade
-);
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
