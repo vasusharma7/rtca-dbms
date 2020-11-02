@@ -18,6 +18,9 @@ function ConversationListItem(props) {
     else props.setDM(true);
     props.resetBadge(id);
     props.openChat(id);
+    if (window.screen.width < 800) {
+      props.switchView();
+    }
   };
   return (
     <div
@@ -47,6 +50,7 @@ const mapDispatchToProps = (dispatch) => {
     resetBadge: (id) => dispatch(action.resetBadge(id)),
     openChat: (id) => dispatch(action.addData("chat", id)),
     setDM: (val) => dispatch(action.addData("dm", val)),
+    switchView: () => dispatch(action.switchView()),
   };
 };
 

@@ -4,6 +4,7 @@ import {
   LOADING,
   ADD_BADGE,
   RESET_BADGE,
+  SWITCH,
 } from "./chatActionTypes";
 
 export const initalState = {
@@ -14,6 +15,7 @@ export const initalState = {
   online: [],
   dm: true,
   badge: {},
+  open: window.screen.width < 800 ? true : false,
 };
 var temp;
 export const chatReducer = (state = initalState, action) => {
@@ -29,6 +31,12 @@ export const chatReducer = (state = initalState, action) => {
       return {
         ...state,
         badge: temp,
+      };
+    case SWITCH:
+      temp = state.open;
+      return {
+        ...state,
+        open: !temp,
       };
     case ADD_BADGE:
       temp = state.badge;

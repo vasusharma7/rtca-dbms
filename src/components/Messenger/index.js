@@ -5,6 +5,7 @@ import "./Messenger.css";
 import { connect } from "react-redux";
 import Notifications from "react-notification-system-redux";
 import * as action from "../../redux/chatRedux/chatAction";
+import { FaCentercode } from "react-icons/fa";
 
 // import Toolbar from "../Toolbar";
 // import ToolbarButton from "../ToolbarButton";
@@ -52,13 +53,28 @@ class Messenger extends Component {
         ]}
       /> */}
 
-        <div className="scrollable sidebar">
-          <ConversationList />
-        </div>
-
-        <div className="scrollable content">
-          <MessageList key={this.props.chat} />
-        </div>
+        {window.screen.width < 800 ? (
+          this.props.open && (
+            <div className="scrollable sidebar">
+              <ConversationList />
+            </div>
+          )
+        ) : (
+          <div className="scrollable sidebar">
+            <ConversationList />
+          </div>
+        )}
+        {window.screen.width < 800 ? (
+          !this.props.open && (
+            <div className="scrollable content">
+              <MessageList key={this.props.chat} />
+            </div>
+          )
+        ) : (
+          <div className="scrollable content">
+            <MessageList key={this.props.chat} />
+          </div>
+        )}
       </div>
     );
   }
@@ -71,6 +87,7 @@ const mapStateToProps = (state) => {
     users: state.chatReducer.users,
     online: state.chatReducer.online,
     chat: state.chatReducer.chat,
+    open: state.chatReducer.open,
   };
 };
 
