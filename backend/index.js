@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 const http = require("http").Server(app);
 
 app.get("/", (req, res) => res.send("Hello World!"));
-const port = process.env.PORT || 5000;
+const port =5001;
 // const usersRouter = require("./routes/users");
 const routes = ["users", "chat"];
 routes.forEach((route) =>
