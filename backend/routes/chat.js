@@ -9,42 +9,47 @@ router.get("/users/:id/:group", (req, res) => {
   if (!id || !group) {
     return res.status(400).json({ msg: "Invalid User Id" });
   }
-  conn.query(
-    `SELECT chat_groups.groupID,users.phone_number,users.first_name,users.last_name from users inner join chat_groups on chat_groups.members = users.phone_number WHERE group_name="${group}"`,
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        throw err;
-      }
-      if (!result.length) {
-        return res.status(400).json({ msg: "No Users Found" });
-      } else {
-        let data = [];
-        let groupID = "";
-        result.forEach((record) => {
-          groupID = record.groupID;
-          // if (record.phone_number == id) return;
-          data.push({
-            id: record.phone_number,
-            first_name: record.first_name,
-            last_name: record.last_name,
+  try {
+    conn.query(
+      `SELECT chat_groups.groupID,users.phone_number,users.first_name,users.last_name from users inner join chat_groups on chat_groups.members = users.phone_number WHERE group_name="${group}"`,
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          throw err;
+        }
+        if (!result.length) {
+          return res.status(400).json({ msg: "No Users Found" });
+        } else {
+          let data = [];
+          let groupID = "";
+          result.forEach((record) => {
+            groupID = record.groupID;
+            // if (record.phone_number == id) return;
+            data.push({
+              id: record.phone_number,
+              first_name: record.first_name,
+              last_name: record.last_name,
+            });
           });
-        });
-        data = [
-          {
-            id: groupID,
-            first_name: group,
-            last_name: "",
-            group: true,
-          },
-          ...data,
-        ];
-        data.push();
-        console.log(data);
-        return res.status(200).json([...data]);
+          data = [
+            {
+              id: groupID,
+              first_name: group,
+              last_name: "",
+              group: true,
+            },
+            ...data,
+          ];
+          data.push();
+          console.log(data);
+          return res.status(200).json([...data]);
+        }
       }
-    }
-  );
+    );
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json("Error ! Something went wrong");
+  }
 });
 
 router.post("/userMessages", (req, res) => {
@@ -60,24 +65,29 @@ router.post("/userMessages", (req, res) => {
   } else {
     query = `SELECT contents.file_as_blob,contents.message_content,messages.date_time,messages.phone_number,messages.userID FROM messages inner join messageContent as contents on messages.messageID = contents.messageID where ((messages.phone_number="${id}" and messages.userID = "${user}") or (messages.phone_number = "${user}" and messages.userID = "${id}")) and messages.groupID="${group}" AND messages.group_user_message=${group_user_message} order by messages.date_time;`;
   }
-  console.log(query);
-  conn.query(query, (err, result) => {
-    if (err) {
-      console.log(err);
-      throw err;
-    }
-    const data = [];
-    result.forEach((record, key) => {
-      data.push({
-        id: key + 1,
-        author: record.phone_number,
-        message: record.message_content,
-        image: record.file_as_blob,
-        timestamp: record.date_time,
+  try {
+    console.log(query);
+    conn.query(query, (err, result) => {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      const data = [];
+      result.forEach((record, key) => {
+        data.push({
+          id: key + 1,
+          author: record.phone_number,
+          message: record.message_content,
+          image: record.file_as_blob,
+          timestamp: record.date_time,
+        });
       });
+      return res.status(200).json([...data]);
     });
-    return res.status(200).json([...data]);
-  });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json("Error ! Something went wrong");
+  }
 });
 router.post("/saveMessage", (req, res) => {
   let { from, to, message, id, dm, group, image } = req.body;
