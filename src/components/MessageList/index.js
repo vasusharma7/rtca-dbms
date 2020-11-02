@@ -183,9 +183,14 @@ class MessageList extends Component {
                 <ToolbarButton
                   key="info"
                   icon="ion-ios-information-circle-outline"
+                  onClick={() => {
+                    if (window.screen.width < 800) {
+                      this.props.switchView();
+                    }
+                  }}
                 />,
-                <ToolbarButton key="video" icon="ion-ios-videocam" />,
-                <ToolbarButton key="phone" icon="ion-ios-call" />,
+                // <ToolbarButton key="video" icon="ion-ios-videocam" />,
+                // <ToolbarButton key="phone" icon="ion-ios-call" />,
               ]}
             />
 
@@ -215,7 +220,7 @@ class MessageList extends Component {
                         key="image"
                         icon="ion-ios-image"
                         onClick={() => this.setState({ upload: true })}
-                      />
+                      />,
                     ]
               }
               emoji={[<ToolbarButton key="emoji" icon="ion-ios-happy" />]}
@@ -249,6 +254,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchMessages: (dm, chat) => dispatch(action.fetchMessages(dm, chat)),
     addBadge: (from) => dispatch(action.addBadge(from)),
+    switchView: () => dispatch(action.switchView()),
     notify: (message) =>
       dispatch(
         Notifications.warning({

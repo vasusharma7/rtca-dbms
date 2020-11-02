@@ -4,12 +4,18 @@ import {
   LOADING,
   ADD_BADGE,
   RESET_BADGE,
+  SWITCH,
 } from "./chatActionTypes";
 import axios from "axios";
 import Notifications from "react-notification-system-redux";
 export const fetchRequest = () => {
   return {
     type: LOADING,
+  };
+};
+export const switchView = () => {
+  return {
+    type: SWITCH,
   };
 };
 export const resetBadge = (id) => {

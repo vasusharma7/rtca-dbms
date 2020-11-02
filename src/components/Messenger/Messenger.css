@@ -2,7 +2,7 @@
   display: grid;
   width: 100%;
   height: 100vh;
-  background-image: url('background.jpg');
+  background-image: url("background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -42,4 +42,13 @@
 .footer {
   grid-column-start: 2;
   background: white;
+}
+
+@media (max-width: 800px) {
+  .messenger {
+    grid-template-columns: 90vw auto;
+    padding-right: 0;
+    padding-left: 0;
+    justify-content: center;
+  }
 }
