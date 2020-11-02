@@ -4,5 +4,6 @@
   "username": "root",
   "password": "toor",
   "database": "rtca",
+  "charset": "utf8mb4",
   "backendURL": "http://localhost:5000/api"
 }
