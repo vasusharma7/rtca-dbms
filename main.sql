@@ -4,7 +4,7 @@ use rtca;
 
 create table users
 (
-    phone_number INTEGER(10),
+    phone_number BIGINT(10),
     pass VARCHAR(256) not null,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
@@ -15,7 +15,7 @@ create table chat_groups
 (
     groupID INTEGER(10),
     group_name VARCHAR(50) not null,
-    members INTEGER(10),
+    members BIGINT(10),
     primary key (groupID,group_name,members),
     foreign key (members) references users(phone_number)
     on delete cascade
@@ -24,7 +24,7 @@ create table chat_groups
 
 create table member
 (
-    phone_number INTEGER(10),
+    phone_number BIGINT(10),
     groupID INTEGER(10),
     primary key (phone_number, groupID),
     foreign key (phone_number) references users(phone_number)
@@ -39,7 +39,7 @@ create table messages
     phone_number INTEGER(10),
     date_time TIMESTAMP,
     group_user_message BIT(1),
-    userID INTEGER(10),
+    userID BIGINT(10),
     groupID INTEGER(10),
     primary key(messageID),
     foreign key (userID) references users (phone_number)
@@ -57,4 +57,3 @@ create table messageContent
     foreign key (messageID) references messages(messageID)
     on delete cascade
 );
-
