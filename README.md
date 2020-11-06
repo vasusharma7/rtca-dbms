@@ -1,9 +1,9 @@
 <p align="center">
   <img src="./public/react-messenger.svg" height="150px" />
-  <h1 align="center">Real Time Chat Application</h1>  
+  <h1 align="center">StreaX Messages</h1>  
 </p>
 
-<span align = "center"> <b>StreaX Messages</b> </span>
+<span align = "center"> <b>Real Time Chat Application</b> </span>
 
 It is a real time chat application with personal and group chatting.It supports sending text messages and pictures. Based on the ideology of Slack, users can create and join multiple groups - this helps to keep common stuff separate among concerned users. It uses JS Sockets for real time communication among users.It also has push notifications on new messages.
 
