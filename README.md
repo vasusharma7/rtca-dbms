@@ -3,6 +3,11 @@
   <h1 align="center">Real Time Chat Application</h1>  
 </p>
 
+<span align = "center"> <b>StreaX Messages</b> </span>
+
+It is a real time chat application with personal and group chatting.It supports sending text messages and pictures. Based on the ideology of Slack, users can create and join multiple groups - this helps to keep common stuff separate among concerned users. It uses JS Sockets for real time communication among users.It also has push notifications on new messages.
+
+
 **Hosted on http://dbms.vasusharma.me/**
 <p align="center">
   <img src="./screenshots/Screenshot from 2020-11-02 14-30-31.png" />
@@ -20,6 +25,7 @@
  **Tech Stack Used**
  
  - React for Frontend
+ - Javascript Sockeyts for real time communication
  - Express framework for backend
  - MySQL database
  - Hosted on AWS
