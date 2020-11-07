@@ -72,12 +72,11 @@ router.get("/getData/:id", (req, res) => {
           return res.status(400).json({ msg: "User does not exist" });
         }
 
-        // else return ID, user name, email ID
+        // else return ID, user name
         else {
           return res.json({
             id: id,
             user_name: result[0].user_name,
-            email_id: result[0].email_id,
           });
         }
       }
