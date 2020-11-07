@@ -39,21 +39,33 @@ It is a real time chat application with personal and group chatting.It supports 
   - emojis also supported
   - users can join multiple groups and hence keep separate groups for different works.
 
-**How it is different from other chat applications ?** 
- 
-  - You can make different groups for family/work. You can be a part of different groups at the same time. Based on ideology of Slack.
-  - Users in a group can interact with personal messages as well as have a group chat
-  - Having a different groups for different purposes helps to keep things organised.
+**Requirements**
   
+  - NodeJS v12.8.1
+  - npm package manager v6.14.8
+  - MySQL Ver 8.0.22
+
 **Installation Guide**
 
   - Download the zip file and extract it.
   - Go to the rtca-dbms-master folder and open the terminal(Terminal 1) in it.
   - Run the following command to install all dependencies:
   > npm install
+  - To setup the database in MySQL, run the following command in the terminal
+  > mysql < main.sql
   - Go to the rtca-dbms-master/backend folder and open the terminal(Terminal 2) in it.
+  > To install all the backend dependencies, run the following command in terminal - 
+  > npm install
   - Run the following command to run the server:
   > node index.js
   - Go to Terminal 1 and run the following command to start the app:
   > npm start
   - For multiple users, open multiple terminals just like Terminal 1 and run the command *npm start*
+  
+
+**How it is different from other chat applications ?** 
+ 
+  - You can make different groups for family/work. You can be a part of different groups at the same time. Based on ideology of Slack.
+  - Users in a group can interact with personal messages as well as have a group chat
+  - Having a different groups for different purposes helps to keep things organised.
+  
