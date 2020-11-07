@@ -33,7 +33,6 @@ It is a real time chat application with personal and group chatting.It supports 
  
  **Features**
  
-
   - Make Groups
   - Send group or personal messages
   - send pictures
@@ -45,3 +44,16 @@ It is a real time chat application with personal and group chatting.It supports 
   - You can make different groups for family/work. You can be a part of different groups at the same time. Based on ideology of Slack.
   - Users in a group can interact with personal messages as well as have a group chat
   - Having a different groups for different purposes helps to keep things organised.
+  
+**Installation Guide**
+
+  - Download the zip file and extract it.
+  - Go to the rtca-dbms-master folder and open the terminal(Terminal 1) in it.
+  - Run the following command to install all dependencies:
+  > npm install
+  - Go to the rtca-dbms-master/backend folder and open the terminal(Terminal 2) in it.
+  - Run the following command to run the server:
+  > node index.js
+  - Go to Terminal 1 and run the following command to start the app:
+  > npm start
+  - For multiple users, open multiple terminals just like Terminal 1 and run the command > npm start
