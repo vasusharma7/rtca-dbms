@@ -56,4 +56,4 @@ It is a real time chat application with personal and group chatting.It supports 
   > node index.js
   - Go to Terminal 1 and run the following command to start the app:
   > npm start
-  - For multiple users, open multiple terminals just like Terminal 1 and run the command *npm start
+  - For multiple users, open multiple terminals just like Terminal 1 and run the command *npm start*
