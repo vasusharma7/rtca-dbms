@@ -4,6 +4,8 @@ const conn = require("../config/conn");
 // @route GET /api/chat/
 // @desc Retrieve contacts
 router.get("/users/:id/:group", (req, res) => {
+
+  // get user ID and group name via request
   const { id, group } = req.params;
   console.log("users", id, group);
   if (!id || !group) {
@@ -11,12 +13,16 @@ router.get("/users/:id/:group", (req, res) => {
   }
   try {
     conn.query(
-      `SELECT chat_groups.groupID,users.phone_number,users.first_name,users.last_name from users inner join chat_groups on chat_groups.members = users.phone_number WHERE group_name="${group}"`,
+
+      // select members present in a group
+      `SELECT chat_groups.groupID, users.phone_number, users.first_name, users.last_name from users inner join chat_groups on chat_groups.members = users.phone_number WHERE group_name="${group}"`,
       (err, result) => {
         if (err) {
           console.log(err);
           throw err;
         }
+
+        // if no users present in the group
         if (!result.length) {
           return res.status(400).json({ msg: "No Users Found" });
         } else {
@@ -54,15 +60,22 @@ router.get("/users/:id/:group", (req, res) => {
 
 router.post("/userMessages", (req, res) => {
   console.log("messages", req.body);
+
+  // doubt get user ID, phone number of user, group ID, group/user message via request
   let { id, user, group, dm } = req.body;
   if (!id || !user) {
     return res.status(400).json({ msg: "Invalid User ID" });
   }
   let group_user_message = dm === true ? 0 : 1;
   let query = "";
+
+  // if group message
   if (group_user_message) {
     query = `SELECT contents.file_as_blob,contents.message_content,messages.date_time,messages.phone_number,messages.userID FROM messages inner join messageContent as contents on messages.messageID = contents.messageID where messages.groupID="${group}" AND messages.group_user_message=${group_user_message} order by messages.date_time;`;
-  } else {
+  }
+
+  // else personal message
+  else {
     query = `SELECT contents.file_as_blob,contents.message_content,messages.date_time,messages.phone_number,messages.userID FROM messages inner join messageContent as contents on messages.messageID = contents.messageID where ((messages.phone_number="${id}" and messages.userID = "${user}") or (messages.phone_number = "${user}" and messages.userID = "${id}")) and messages.groupID="${group}" AND messages.group_user_message=${group_user_message} order by messages.date_time;`;
   }
   try {
@@ -89,7 +102,11 @@ router.post("/userMessages", (req, res) => {
     return res.status(400).json("Error ! Something went wrong");
   }
 });
+
+
 router.post("/saveMessage", (req, res) => {
+
+  // get sender, receiver, message content, message ID, group ID, image via request
   let { from, to, message, id, dm, group, image } = req.body;
   console.log("save", req.body);
   id = id.toString();
@@ -100,9 +117,17 @@ router.post("/saveMessage", (req, res) => {
     .replace("T", " ");
   let query = "";
 
+  // if group message
   if (dm) {
+
+    // insert group messages in messages table
     query = `INSERT INTO messages (messageID,phone_number,date_time,group_user_message,userID,groupID) VALUES ("${id}","${from}", "${time}", 0,"${to}","${group}");`;
-  } else {
+  }
+
+  // else personal message
+  else {
+
+    // insert personal messages in messages table
     query = `INSERT INTO messages (messageID,phone_number,date_time,group_user_message,userID,groupID) VALUES ("${id}","${from}", "${time}", 1,"${from}","${to}");`;
   }
   try {
@@ -111,9 +136,18 @@ router.post("/saveMessage", (req, res) => {
         console.log(err);
       }
       let query = "";
+
+      // if image present
       if (image) {
+
+        // insert message and image in messageContent table
         query = `INSERT INTO messageContent (messageID,message_content,file_as_blob) VALUES ("${id}","${message}","${image}");`;
-      } else {
+      }
+
+      // else
+      else {
+
+        // insert message in messageContent table
         query = `INSERT INTO messageContent (messageID,message_content) VALUES ("${id}","${message}");`;
       }
 
@@ -121,7 +155,7 @@ router.post("/saveMessage", (req, res) => {
         if (err) {
           console.log(err);
         }
-        console.log("message saved successfully");
+        console.log("Message saved successfully");
         return res.status(200).json("Message Saved Successfully");
       });
     });
