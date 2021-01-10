@@ -1,0 +1,21 @@
+{
+  "main.css": "/static/css/main.27b8e1b0.chunk.css",
+  "main.js": "/static/js/main.f7389c37.chunk.js",
+  "main.js.map": "/static/js/main.f7389c37.chunk.js.map",
+  "static/css/1.e37e3629.chunk.css": "/static/css/1.e37e3629.chunk.css",
+  "static/js/1.529a6a9b.chunk.js": "/static/js/1.529a6a9b.chunk.js",
+  "static/js/1.529a6a9b.chunk.js.map": "/static/js/1.529a6a9b.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
+  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
+  "static/media/auth.scss": "/static/media/background.662ccd92.jpg",
+  "static/media/ring.mp3": "/static/media/ring.7ad935d5.mp3",
+  "static/media/logo.png": "/static/media/logo.02495e1c.png",
+  "static/media/ConversationSearch.css": "/static/media/Cross.f11b103c.svg",
+  "static/media/MessageList.css": "/static/media/back.73adc9ff.png",
+  "static/media/Messenger.css": "/static/media/background.eae63c0a.jpg",
+  "static/css/main.27b8e1b0.chunk.css.map": "/static/css/main.27b8e1b0.chunk.css.map",
+  "static/css/1.e37e3629.chunk.css.map": "/static/css/1.e37e3629.chunk.css.map",
+  "index.html": "/index.html",
+  "precache-manifest.d513e79895d3027e7b7d5e0c749e7b4e.js": "/precache-manifest.d513e79895d3027e7b7d5e0c749e7b4e.js",
+  "service-worker.js": "/service-worker.js"
+}
