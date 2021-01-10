@@ -1,8 +1,8 @@
 import socketIOClient from "socket.io-client";
-const sockets = socketIOClient(`http://localhost:5000/`);
+const sockets = socketIOClient(`http://52.172.195.253:5000/`);
 global.config = {
-  backendURL: "http://localhost:5000/api",
-  images: "http://localhost:5000/",
+  backendURL: "http://52.172.195.253:5000/api",
+  images: "http://52.172.195.253:5000/",
   socket: sockets,
 };
 export default global.config;
